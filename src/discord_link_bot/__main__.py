@@ -32,10 +32,14 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    # Check if the message contains a link
+    if not link_regex.search(message.content):
+        return
+
     # Check if the message is in any of the source channels
     for mapping in CHANNEL_MAPPINGS:
         if message.channel.id == mapping['source']:
-            logging.info(f"Message detected in source channel {mapping['source']}: {message.content[:50]}...")
+            logging.info(f"Link message detected in source channel {mapping['source']}: {message.content[:50]}...")
             
             target_channel = client.get_channel(mapping['target'])
             if not target_channel:
