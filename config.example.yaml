@@ -1,0 +1,4 @@
+token: <your bot token>
+channel_mappings:
+  - source: <source channel id>
+    target: <target channel id>
